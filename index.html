@@ -294,13 +294,14 @@
   setInterval(tick, 1000);
 
   var hint = document.getElementById('nav-hint');
-  var observer = new IntersectionObserver(function(entries) {
-    if (entries[0].isIntersecting) {
-      hint.style.opacity = '1';
-      observer.disconnect();
-    }
-  }, { threshold: 1.0 });
-  observer.observe(hint);
+  setTimeout(function() {
+    hint.style.opacity = '1';
+    var visible = true;
+    setInterval(function() {
+      visible = !visible;
+      hint.style.opacity = visible ? '1' : '0';
+    }, 3000);
+  }, 12000);
 </script>
 
 </body>
